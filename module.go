@@ -52,7 +52,7 @@ func NewSander(ctx context.Context, deps resource.Dependencies, rawConf resource
 	)
 	hose, err := spatialmath.NewSphere(hpose, 50, "hose")
 	bpose := spatialmath.NewPose(
-		r3.Vector{Z: 51.475}, &spatialmath.OrientationVectorDegrees{OZ: 1},
+		r3.Vector{Z: 51.475}, &spatialmath.OrientationVectorDegrees{OY: 1},
 	)
 	block, err := spatialmath.NewBox(bpose, r3.Vector{X: 270, Y: 70, Z: 38}, "block")
 	errors.Join(errs, err)
