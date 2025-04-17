@@ -3,8 +3,8 @@ module github.com/randhid/sanderee
 go 1.23.8
 
 require (
+	github.com/golang/geo v0.0.0-20210211234256-740aa86cb551
 	go.viam.com/rdk v0.71.2
-	go.viam.com/utils v0.1.140
 )
 
 require (
@@ -47,7 +47,6 @@ require (
 	github.com/goccy/go-json v0.10.2 // indirect
 	github.com/golang-jwt/jwt/v4 v4.5.0 // indirect
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
-	github.com/golang/geo v0.0.0-20210211234256-740aa86cb551 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
@@ -125,6 +124,7 @@ require (
 	go.uber.org/zap v1.27.0 // indirect
 	go.viam.com/api v0.1.430 // indirect
 	go.viam.com/test v1.2.4 // indirect
+	go.viam.com/utils v0.1.140 // indirect
 	golang.org/x/crypto v0.36.0 // indirect
 	golang.org/x/exp v0.0.0-20240904232852-e7e105dedf7e // indirect
 	golang.org/x/image v0.19.0 // indirect
