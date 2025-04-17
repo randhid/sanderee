@@ -1,20 +1,13 @@
 # Module sander-ee 
 
-Provide a description of the purpose of the module and any relevant information.
+Passive block sander module, contains a gripper component.
 
 ## Model rand:sander-ee:sander-ee
 
-Provide a description of the model and any relevant information.
+Passive block sander resource as a gripper component.
 
 ### Configuration
-The following attribute template can be used to configure this model:
-
-```json
-{
-"attribute_1": <float>,
-"attribute_2": <string>
-}
-```
+This module has no attributes associated with it and can be configured without any.
 
 #### Attributes
 
