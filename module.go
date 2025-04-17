@@ -1,4 +1,4 @@
-package github.com/randhid/sanderee
+package sanderee
 
 import (
 	"context"

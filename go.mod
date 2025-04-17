@@ -1,4 +1,4 @@
-module sanderee
+module github.com/randhid/sanderee
 
 go 1.23.8
 

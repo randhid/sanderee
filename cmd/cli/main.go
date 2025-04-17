@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"sanderee"
+	"github.com/randhid/sanderee"
 
 	"go.viam.com/rdk/logging"
 	"go.viam.com/rdk/resource"
