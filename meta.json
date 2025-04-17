@@ -2,8 +2,8 @@
   "$schema": "https://dl.viam.dev/module.schema.json",
   "module_id": "rand:sander-ee",
   "visibility": "public",
-  "url": "htpss://github.com/viamrobotics/module-sander-ee",
-  "description": "Modular gripper component: sander-ee",
+  "url": "https://github.com/randhid/sanderee/",
+  "description": "Modular gripper component: sanderee",
   "models": [
     {
       "api": "rdk:component:gripper",
