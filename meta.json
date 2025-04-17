@@ -1,0 +1,28 @@
+{
+  "$schema": "https://dl.viam.dev/module.schema.json",
+  "module_id": "rand:sander-ee",
+  "visibility": "public",
+  "url": "",
+  "description": "Modular gripper component: sander-ee",
+  "models": [
+    {
+      "api": "rdk:component:gripper",
+      "model": "rand:sander-ee:sander-ee",
+      "short_description": "Provide a short (100 characters or less) description of this model here",
+      "markdown_link": "README.md#model-randsander-eesander-ee"
+    }
+  ],
+  "applications": null,
+  "markdown_link": "README.md",
+  "entrypoint": "bin/sander-ee",
+  "first_run": "",
+  "build": {
+    "build": "make module.tar.gz",
+    "setup": "make setup",
+    "path": "bin/module.tar.gz",
+    "arch": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
+  }
+}
