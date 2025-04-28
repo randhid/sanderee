@@ -55,7 +55,6 @@ func NewSander(ctx context.Context, deps resource.Dependencies, rawConf resource
 	}
 
 	geoms := []spatialmath.Geometry{}
-
 	switch {
 	case conf.UseCapsules:
 		sanderGeoms, err := makeSanderCapsules()
@@ -106,7 +105,9 @@ func makeSanderBlocks() ([]spatialmath.Geometry, error) {
 		return nil, err
 	}
 
-	hosePose := spatialmath.NewPoseFromPoint(r3.Vector{Y: blockDims.Z / 2, Z: -blockDims.X / 2})
+	hosePose := spatialmath.NewPoseFromPoint(
+		sandingBlockPose.Point().Add(r3.Vector{X: sandingBlockBoxDim.X / 2, Z: -sandingBlockBoxDim.Z / 2}),
+	)
 	hose, err := spatialmath.NewSphere(hosePose, 15, hoseName)
 	if err != nil {
 		return nil, err
@@ -178,7 +179,7 @@ func makeFancySander() ([]spatialmath.Geometry, error) {
 	}
 
 	// hose - ballpark placement is middle of the sanding block height block at one edge
-	hpose := spatialmath.NewPose(r3.Vector{Y: blockDims.Z / 2, Z: totalLengthFancy - blockDims.X/2}, &spatialmath.OrientationVectorDegrees{OY: 1})
+	hpose := spatialmath.NewPose(r3.Vector{X: blockDims.X / 2, Z: totalLengthFancy - blockDims.Z/2}, &spatialmath.OrientationVectorDegrees{OY: 1})
 	hose, err := spatialmath.NewSphere(hpose, 25, hoseName)
 	if err != nil {
 		return nil, err
