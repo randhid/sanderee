@@ -95,22 +95,18 @@ var (
 )
 
 func makeSanderBlocks() ([]spatialmath.Geometry, error) {
-	clampPose := spatialmath.NewPose(
-		r3.Vector{Z: -11}, &spatialmath.OrientationVectorDegrees{OY: 1},
-	)
-
-	clamp, err := spatialmath.NewBox(clampPose, clampBoxDim, clampName)
+	clamp, err := spatialmath.NewBox(spatialmath.NewZeroPose(), clampBoxDim, clampName)
 	if err != nil {
 		return nil, err
 	}
 
-	sandingBlockPose := spatialmath.NewPose(r3.Vector{Z: clampBoxDim.Z}, &spatialmath.OrientationVectorDegrees{OY: 1})
+	sandingBlockPose := spatialmath.NewPoseFromPoint(r3.Vector{Z: clampBoxDim.Z})
 	sandingBlock, err := spatialmath.NewBox(sandingBlockPose, sandingBlockBoxDim, sandingBlockName)
 	if err != nil {
 		return nil, err
 	}
 
-	hosePose := spatialmath.NewPose(r3.Vector{Y: blockDims.Z / 2, Z: -blockDims.X / 2}, &spatialmath.OrientationVectorDegrees{OY: 1})
+	hosePose := spatialmath.NewPoseFromPoint(r3.Vector{Y: blockDims.Z / 2, Z: -blockDims.X / 2})
 	hose, err := spatialmath.NewSphere(hosePose, 15, hoseName)
 	if err != nil {
 		return nil, err
@@ -132,14 +128,17 @@ var (
 )
 
 func makeSanderCapsules() ([]spatialmath.Geometry, error) {
-	clampPose := spatialmath.NewPose(r3.Vector{}, &spatialmath.OrientationVectorDegrees{OY: 1})
-	clamp, err := spatialmath.NewCapsule(clampPose, clampCapsuleLength, clampCapsuleRadius, clampName)
+	clampPose := spatialmath.NewPoseFromOrientation(&spatialmath.OrientationVectorDegrees{OY: 1})
+	clamp, err := spatialmath.NewCapsule(clampPose, clampCapsuleRadius, clampCapsuleLength, clampName)
 	if err != nil {
 		return nil, err
 	}
 
-	sandingBlockPose := spatialmath.NewPoseFromPoint(r3.Vector{Z: totalLengthCapsule - clampCapsuleRadius})
-	sandingBlock, err := spatialmath.NewCapsule(sandingBlockPose, sandingBlockCapsuleLength, sandingBlockCapsuleRadius, sandingBlockName)
+	sandingBlockPose := spatialmath.NewPose(
+		r3.Vector{Z: totalLengthCapsule - clampCapsuleRadius},
+		&spatialmath.OrientationVectorDegrees{OY: 1},
+	)
+	sandingBlock, err := spatialmath.NewCapsule(sandingBlockPose, sandingBlockCapsuleRadius, sandingBlockCapsuleLength, sandingBlockName)
 	if err != nil {
 		return nil, err
 	}
