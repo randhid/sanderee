@@ -17,6 +17,7 @@ var (
 	errUnimplemented = errors.New("unimplemented")
 	blockDims        = r3.Vector{X: 38, Y: 78, Z: 270}
 	totalLengthFancy = 105.
+	hoseRadius       = 12.5
 
 	clampName        = "clamp"
 	hoseName         = "hose"
@@ -90,23 +91,25 @@ func (s *sanderEeSanderEe) Geometries(ctx context.Context, extra map[string]inte
 
 var (
 	clampBoxDim        = r3.Vector{X: 340, Y: 130, Z: 51}
-	sandingBlockBoxDim = r3.Vector{X: 270, Y: 78, Z: 38}
+	sandingBlockBoxDim = r3.Vector{X: 270, Y: 78, Z: 25}
 )
 
 func makeSanderBlocks() ([]spatialmath.Geometry, error) {
-	clamp, err := spatialmath.NewBox(spatialmath.NewPoseFromPoint(r3.Vector{Z: clampBoxDim.Z / 2}), clampBoxDim, clampName)
+	clampPose := spatialmath.NewPoseFromPoint(r3.Vector{Z: clampBoxDim.Z})
+	clamp, err := spatialmath.NewBox(clampPose, clampBoxDim, clampName)
 	if err != nil {
 		return nil, err
 	}
 
-	sandingBlockPose := spatialmath.NewPoseFromPoint(r3.Vector{Z: clampBoxDim.Z})
+	sandingBlockPose := spatialmath.NewPoseFromPoint(
+		clampPose.Point().Add(r3.Vector{Z: clampBoxDim.Z/2 + sandingBlockBoxDim.Z/2}))
 	sandingBlock, err := spatialmath.NewBox(sandingBlockPose, sandingBlockBoxDim, sandingBlockName)
 	if err != nil {
 		return nil, err
 	}
 
 	hosePose := spatialmath.NewPoseFromPoint(
-		sandingBlockPose.Point().Add(r3.Vector{X: sandingBlockBoxDim.X / 2, Z: -sandingBlockBoxDim.Z / 2}),
+		sandingBlockPose.Point().Add(r3.Vector{X: sandingBlockBoxDim.X / 2}),
 	)
 	hose, err := spatialmath.NewSphere(hosePose, 15, hoseName)
 	if err != nil {
@@ -145,7 +148,7 @@ func makeSanderCapsules() ([]spatialmath.Geometry, error) {
 	}
 
 	hosePose := spatialmath.NewPoseFromPoint(r3.Vector{Y: sandingBlockCapsuleLength / 2, Z: totalLengthCapsule - sandingBlockCapsuleRadius*2})
-	hose, err := spatialmath.NewSphere(hosePose, 25, hoseName)
+	hose, err := spatialmath.NewSphere(hosePose, 12.5, hoseName)
 	if err != nil {
 		return nil, err
 	}
