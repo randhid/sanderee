@@ -94,7 +94,7 @@ var (
 )
 
 func makeSanderBlocks() ([]spatialmath.Geometry, error) {
-	clamp, err := spatialmath.NewBox(spatialmath.NewZeroPose(), clampBoxDim, clampName)
+	clamp, err := spatialmath.NewBox(spatialmath.NewPoseFromPoint(r3.Vector{Z: clampBoxDim.Z / 2}), clampBoxDim, clampName)
 	if err != nil {
 		return nil, err
 	}
