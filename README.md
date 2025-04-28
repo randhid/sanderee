@@ -7,37 +7,23 @@ Passive block sander module, contains a gripper component.
 Passive block sander resource as a gripper component.
 
 ### Configuration
-This module has no attributes associated with it and can be configured without any.
+The gripper model can be configured to add geometries to the gripper consistin of boxes or capsules.
 
 #### Attributes
 
-The following attributes are available for this model:
+The following attributes are available for this model, if no attributes are provides, the gripper module will make a sanding geometry consisting of blocks:
 
-| Name          | Type   | Inclusion | Description                |
+| Name          | Type   | Required? | Description                |
 |---------------|--------|-----------|----------------------------|
-| `attribute_1` | float  | Required  | Description of attribute 1 |
-| `attribute_2` | string | Optional  | Description of attribute 2 |
+| `use_capsules` | bool  | no  | use capsule geometry for the sanding end effector. |
+| `fancy-sander` | bool | no  | use the fancy geometry that includes springs for compliance on the sanding end effector. |
 
 #### Example Configuration
 
 ```json
 {
-  "attribute_1": 1.0,
-  "attribute_2": "foo"
+  "use_capsules": true,
+  "fancy_sander": true
 }
 ```
 
-### DoCommand
-
-If your model implements DoCommand, provide an example payload of each command that is supported and the arguments that can be used. If your model does not implement DoCommand, remove this section.
-
-#### Example DoCommand
-
-```json
-{
-  "command_name": {
-    "arg1": "foo",
-    "arg2": 1
-  }
-}
-```
