@@ -7,7 +7,8 @@ Passive block sander module, contains a gripper component.
 Passive block sander resource as a gripper component.
 
 ### Configuration
-The gripper model can be configured to add geometries to the gripper consistin of boxes or capsules.
+This module does not requried any attirbutes, but can be configured to update the geoemtries of the sander.
+The sander model can be configured to add geometries to the gripper consisting of boxes or capsules.
 
 #### Attributes
 
